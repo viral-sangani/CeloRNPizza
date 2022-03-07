@@ -1,7 +1,7 @@
 import { useWalletConnect } from "@walletconnect/react-native-dapp";
 import { LinearGradient } from "expo-linear-gradient";
 import LottieView from "lottie-react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Dimensions,
   ScrollView,
@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import Web3 from "web3";
 import PizzaItem from "../components/PizzaItem";
 import { pizzas, primaryColor, secondaryColor } from "../utils/constant";
 import { globalStyle } from "../utils/globalStyle";
@@ -19,14 +20,45 @@ const windowHeight = Dimensions.get("window").height;
 
 export function HomeScreen() {
   const connector = useWalletConnect();
+  const [address, setAddress] = React.useState("");
 
-  const connectWallet = React.useCallback(() => {
-    return connector.connect();
+  useEffect(() => {
+    if (connector.connected) {
+      setAddress(connector.accounts[0]);
+    }
+    connector.accounts;
   }, [connector]);
+
+  connector.on("connect", (error, payload) => {
+    if (error) {
+      console.log(error);
+    } else {
+      setAddress(payload.accounts[0]);
+    }
+  });
+  connector.on("disconnect", () => {
+    setAddress("");
+  });
 
   const killSession = React.useCallback(() => {
     return connector.killSession();
   }, [connector]);
+
+  const buyPizza = async (price: string) => {
+    var priceInWei = Web3.utils.toWei(price, "ether");
+    // Draft transaction
+    const tx = {
+      from: address,
+      to: "0xa809135b2e63A1591215Fe07dF071fc793983276",
+      data: "0x",
+      value: Web3.utils.toHex(priceInWei),
+    };
+    try {
+      var result = await connector.sendTransaction(tx);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <ScrollView>
@@ -43,10 +75,9 @@ export function HomeScreen() {
           {pizzas.map((pizza, index) => (
             <PizzaItem
               key={index}
-              name={pizza.name}
-              path={pizza.path}
-              price={pizza.price}
-              rating={pizza.rating}
+              pizza={pizza}
+              index={index + 1}
+              buyPizza={buyPizza}
             />
           ))}
         </View>

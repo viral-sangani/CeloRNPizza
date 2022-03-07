@@ -2,6 +2,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useWalletConnect } from "@walletconnect/react-native-dapp";
 import { StatusBar } from "expo-status-bar";
+import { LogBox } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import useCachedResources from "./hooks/useCachedResources";
 import useColorScheme from "./hooks/useColorScheme";
@@ -14,6 +15,11 @@ export default function App() {
   const isLoadingComplete = useCachedResources();
   const colorScheme = useColorScheme();
   const connector = useWalletConnect();
+
+  LogBox.ignoreLogs([
+    "The provided value 'moz-chunked-arraybuffer' is not a valid 'responseType'.",
+    "The provided value 'ms-stream' is not a valid 'responseType'.",
+  ]);
 
   if (!isLoadingComplete) {
     return null;

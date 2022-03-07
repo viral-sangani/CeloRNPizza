@@ -1,33 +1,34 @@
 import React from "react";
 import {
   Dimensions,
-  Image,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from "react-native";
+import { Image } from "react-native-expo-image-cache";
 import { PizzaType, primaryColor } from "../utils/constant";
 
 const windowWidth = Dimensions.get("window").width;
 
-const PizzaItem = (pizza: PizzaType) => {
+interface Props {
+  buyPizza: (price: string) => Promise<void>;
+  pizza: PizzaType;
+  index: number;
+}
+
+const PizzaItem: React.FC<Props> = ({ pizza, index, buyPizza }) => {
   return (
     <View style={styles.pizzaItem}>
-      <Image
-        style={styles.pizzaItemImage}
-        source={{
-          uri: pizza.path,
-        }}
-      />
+      <Image style={styles.pizzaItemImage} uri={pizza.path} />
       <Text style={styles.pizzaName}>{pizza.name}</Text>
       <TouchableOpacity
         onPress={() => {
-          console.log("Logout");
+          buyPizza(pizza.price);
         }}
         style={styles.pizzaPrice}
       >
-        <Text style={styles.pizzaPriceText}>{pizza.price} cUSD</Text>
+        <Text style={styles.pizzaPriceText}>{pizza.price} CELO</Text>
       </TouchableOpacity>
     </View>
   );
