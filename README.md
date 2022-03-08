@@ -3,12 +3,10 @@
 <br />
 <div align="center">
 
-  <h3 align="center">Celo ContractKit Experiments</h3>
+  <h3 align="center">Celo Pizza Mobile dApp</h3>
 
   <p align="center">
-    Created a swap with Celo's ContractKit and use-contractkig packages.
-    <br />
-    <a href="https://celo-swap.netlify.app/"><strong>Take me to the Website »</strong></a>
+    Created a React Native pizza dApp in Celo Network.
     <br />
     <br />
     <a href="https://github.com/viral-sangani/CeloRNPizza/issues">Report Bug</a>
@@ -45,11 +43,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-![Poster](/public/poster.png)
-
-[Demo](https://www.loom.com/share/e884f5132e4f491a9e1fe183fa8ff783?sharedAppSource=personal_library)
-
-Poking around and learing about Celo's ContractKit package and creating a dApp to swap CELO with cUSD.
+[Demo](https://github.com/viral-sangani/CeloRNPizza/raw/main/assets/celo-pizza-dApp.mov)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
