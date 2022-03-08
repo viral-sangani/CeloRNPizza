@@ -43,7 +43,9 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[Demo](https://github.com/viral-sangani/CeloRNPizza/raw/main/assets/celo-pizza-dApp.mov)
+[Demo](https://drive.google.com/file/d/1lfEv_wL_i13SafmwHtVMRryXhhOakjSb/view?usp=sharing)
+
+A simple Mobile app where user can connect their Valore wallet and buy some Pizza 🍕. Pay with Celo, cUSD or cEUR.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
